@@ -87,7 +87,7 @@
     text-align: center;
     font-size: 12px;
     color: #888;
-    padding: 20px;
+    padding: 40px 20px; /* 여백 조정 */
   }
 
   .btn {
@@ -217,7 +217,10 @@
   </section><br><br>
 
   <footer class="footer">
-    <img src="logo.png" style="width:160px; margin:0 auto 10px;">
+    <img src="logo.png" style="width:160px; margin:0 auto 10px; display: block;">
+    <div style="font-size: 11px; color: #999; line-height: 1.4; letter-spacing: -0.02em;">
+      경기도 수원시 장안구 파장천로30번길 24
+    </div>
   </footer>
 
 </div>
@@ -235,7 +238,6 @@ let isPlaying = false;
 function playMusic() {
   if (!audio) return;
 
-  // 1. 배경음악을 재생할 때, 비디오가 나오고 있다면 비디오를 일시정지함
   if (!video.paused) {
     video.pause();
   }
@@ -257,7 +259,7 @@ function playMusic() {
   }
 }
 
-// 2. 비디오가 재생(play)될 때 배경음악을 멈추는 이벤트 리스너
+// 비디오가 재생될 때 배경음악 정지
 video.addEventListener("play", () => {
   if (isPlaying) {
     audio.pause();
@@ -266,7 +268,7 @@ video.addEventListener("play", () => {
   }
 });
 
-// 초기 재생 버튼 이벤트
+// 초기 재생 버튼
 if (startBtn) {
   startBtn.addEventListener("click", () => {
     playPrompt.classList.add("hidden");
@@ -274,7 +276,7 @@ if (startBtn) {
   });
 }
 
-// BGM 토글 버튼 이벤트
+// 토글 버튼
 if (btn) {
   btn.addEventListener("click", () => {
     if (isPlaying) {
@@ -287,7 +289,7 @@ if (btn) {
   });
 }
 
-// 페이지 로드 시 자동재생 시도 (브라우저 정책상 차단될 수 있음)
+// 페이지 로드 시
 window.addEventListener("load", () => {
   audio.play()
     .then(() => {
